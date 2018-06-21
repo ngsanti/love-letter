@@ -1,5 +1,4 @@
 <div class="hand" *ngIf="player">
-  <div class="card-wrapper" *ngFor="let card of cards; let index = index" (click)="chooseCard(index)">
-    <app-card [card]="card"></app-card>
-  </div>
+  <app-card *ngIf="player" [card]="player.hand" (click)="chooseHand()"></app-card>
+  <app-card *ngIf="drawn" [card]="drawn" (click)="chooseDrawn()"></app-card>
 </div>

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 
-import { Player } from './player';
 import { Card, TYPES } from './card';
+import { Player } from './player';
 
 export class State {
   deck: Card[];
@@ -15,18 +15,18 @@ export class State {
     this.playerIdTurn = 0;
     this.players = [];
     for (let i = 0; i < playerNum; i++) {
-    	var player = new Player(i, "Player" + (i+1));
-    	player.hand = this.drawCard();
-    	this.players.push(player);
+      const player = new Player(i, 'Player' + (i + 1));
+      player.hand = this.drawCard();
+      this.players.push(player);
     }
   }
 
   changeHand(playerId: number, newHand: Card) {
-  	this.players[playerId].hand = newHand;
+    this.players[playerId].hand = newHand;
   }
 
   eliminatePlayer(playerId: number) {
-  	this.players[playerId].isEliminated = true;
+    this.players[playerId].isEliminated = true;
   }
 
   drawCard(): Card {

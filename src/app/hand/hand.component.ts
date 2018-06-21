@@ -8,12 +8,11 @@ import { Player } from '../player';
   templateUrl: './hand.component.html',
   styleUrls: ['./hand.component.css']
 })
-export class HandComponent implements OnInit, OnChanges {
+export class HandComponent implements OnInit {
 
   @Input() drawn: Card;
   @Input() player: Player;
   @Output() choose = new EventEmitter<{chosen: Card, hand: Card}>();
-  cards: Card[] = [];
 
   constructor(
   ) { }
@@ -21,19 +20,17 @@ export class HandComponent implements OnInit, OnChanges {
   ngOnInit() {
   }
 
-  ngOnChanges(changes: SimpleChanges) {
-    if (changes.player) {
-      this.cards.push(this.player.hand);
-    } else if (changes.drawn) {
-      this.cards.push(this.drawn);
-    }
+  chooseHand() {
+    this.choose.emit({
+      chosen: this.player.hand,
+      hand: this.drawn,
+    });
   }
 
-  chooseCard(index: number) {
-    const chosen = this.cards.splice(index, 1);
+  chooseDrawn() {
     this.choose.emit({
-      chosen: chosen[0],
-      hand: this.cards.length > 0 ? this.cards[0] : null,
+      chosen: this.drawn,
+      hand: this.player.hand,
     });
   }
 

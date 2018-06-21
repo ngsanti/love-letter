@@ -22,7 +22,7 @@ export class AppComponent {
   players: number;
 
   drawnCard: Card;
-  cardsAtHand = 0;
+  cardsAtHand = 1;
   chosenCard: Card;
 
   constructor( ) {
@@ -71,6 +71,7 @@ export class AppComponent {
   listenForChanges(): AppComponent {
     this.pusherChannel.bind('client-done', (obj: State) => {
       this.state = obj;
+      console.log(this.state.players[this.playerId].hand);
     });
     return this;
   }
@@ -89,10 +90,11 @@ export class AppComponent {
 
   // component interactions?
   drawCard() {
-    console.log('calling');
     if (this.cardsAtHand < 2) {
+      console.log(this.state);
+      console.log(this.state.drawCard);
+      this.drawnCard = this.state.deck.pop();
       this.cardsAtHand++;
-      this.drawnCard = this.state.drawCard();
     }
   }
 
@@ -112,6 +114,7 @@ export class AppComponent {
   playCard(cards: {chosen: Card, hand: Card}) {
     this.cardsAtHand--;
     this.chosenCard = cards.chosen;
-    this.state.changeHand(this.playerId, cards.hand);
+    this.drawnCard = null;
+    this.state.players[this.playerId].hand = cards.hand;
   }
 }

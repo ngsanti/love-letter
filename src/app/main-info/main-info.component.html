@@ -2,7 +2,7 @@
   <p>Cards left: {{cardsLeft}}</p>
 </div>
 <div *ngIf="cardsLeft > 0" style="display: inline-block;">
-  <img (click)="drawCard()" src="assets/img/back.png" style="cursor: pointer;">
+  <img [class.disabled]="disableDeck" (click)="drawCard()" src="assets/img/back.png" style="cursor: pointer;">
 </div>
 <div style="display: inline-block;" class="played-cards">
   <app-card *ngIf="actionCard" [card]="actionCard" size="small"></app-card>

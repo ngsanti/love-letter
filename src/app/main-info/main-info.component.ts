@@ -13,6 +13,7 @@ export class MainInfoComponent implements OnInit {
   @Input() actionCard: Card;
   @Input() cardsLeft: number;
   @Input() hiddenCard: Card;
+  @Input() disableDeck = false;
   constructor() { }
 
   ngOnInit() {

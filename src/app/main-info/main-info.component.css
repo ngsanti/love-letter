@@ -15,3 +15,8 @@
 .played-cards {
   padding: 24px;
 }
+
+img.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
