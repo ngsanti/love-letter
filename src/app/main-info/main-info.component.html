@@ -1,5 +1,5 @@
-<div *ngIf="gameService.deck">
-  <p>Cards left: {{gameService.deck.length}}</p>
+<div *ngIf="cardsLeft">
+  <p>Cards left: {{cardsLeft}}</p>
 </div>
 <div *ngIf="gameService.deck.length > 0">
   <img (click)="drawCard()" src="assets/img/back.png">

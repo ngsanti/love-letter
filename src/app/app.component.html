@@ -1,6 +1,5 @@
-{{player.id}}
 <app-guide-text [display]="display"></app-guide-text>
-<app-main-info></app-main-info>
+<app-main-info *ngIf="state.deck" [cardsLeft]="state.deck.length"></app-main-info>
 <button (click)="endTurn()">end turn</button>
-<app-hand *ngIf="player" [player]="player"></app-hand>
-<app-card-selector></app-card-selector>
+<app-hand *ngIf="state.players[this.playerId]" [player]="state.players[this.playerId]"></app-hand>
+<app-card-selector></app-card-selector>s

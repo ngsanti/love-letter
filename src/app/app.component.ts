@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { GameService } from './game.service';
+import { State } from './state';
 import { Player } from './player';
 
 // declare Pusher const for use
@@ -10,26 +10,24 @@ const NUM_PLAYERS = 2;
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css'],
-  providers: [GameService]
+  styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
     display = 'Welcome to love letter!';
     pusherChannel: any;
     gameId: string;
-    player = new Player(0, 'fdskfsj');
-    players: number = 0;
-    canPlay: boolean = false;
+    playerId: number;
+    state: State;
+    players: number;
 
-    constructor(
-      private gameService: GameService,
-    ) {
+    constructor( ) {
+      this.initGame();
       this.initPusher();
       this.listenForChanges();
     }
 
-    ngOnInit() {
-      this.player.hand = this.gameService.drawCard();
+    initGame() {
+      this.state = new State(NUM_PLAYERS);
     }
 
     // initialise Pusher and bind to presence channel
@@ -53,43 +51,27 @@ export class AppComponent implements OnInit {
       this.pusherChannel.bind('pusher:member_added', member => { this.players++ })
       this.pusherChannel.bind('pusher:subscription_succeeded', members => {
         this.players = members.count;
-        this.setPlayer(this.players);
+        this.playerId = members.count - 1;
+        this.display = 'You are player #' + (this.playerId + 1);
+        this.sendState();
       })
       this.pusherChannel.bind('pusher:member_removed', member => { this.players-- });
 
       return this;
     }
 
-    // Listen for `client-fire` events.
+    // Listen for `client-done` events.
     // Update the board object and other properties when
     // event triggered
     listenForChanges() : AppComponent {
-      this.pusherChannel.bind('client-done', (obj) => {
-        this.canPlay = !this.canPlay;
-        // swap turn
+      this.pusherChannel.bind('client-done', (obj: State) => {
+        this.state = obj;
       });
       return this;
     }
 
-    // initialise player and set turn
-    setPlayer(players:number = 0) : AppComponent {
-      this.player.id = players - 1;
-      if (players == 1) {
-        this.canPlay = true;
-      } else if (players == 2) {
-        this.canPlay = false;
-      }
-      return this;
-    }
-
-    endTurn() : AppComponent {
-      this.canPlay = false;
-      this.pusherChannel.trigger('client-done', {
-        // player: this.player,
-        // score: this.boards[this.player].player.score,
-        // boardId: boardId,
-        // board: this.boards[boardId]
-      });
+    sendState() : AppComponent {
+      this.pusherChannel.trigger('client-done', this.state);
       return this;
     }
 
@@ -103,10 +85,5 @@ export class AppComponent implements OnInit {
     // name for each game
     getUniqueId () {
       return 'presence-' + Math.random().toString(36).substr(2, 8);
-    }
-
-    // check if player is a valid player for the game
-    get validPlayer(): boolean {
-      return (this.players >= NUM_PLAYERS) && (this.player.id < NUM_PLAYERS);
     }
 }
