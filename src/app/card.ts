@@ -7,7 +7,6 @@ export enum TYPES {
   KING,
   COUNTESS,
   PRINCESS,
-  NONE,
 }
 
 export class Card {
