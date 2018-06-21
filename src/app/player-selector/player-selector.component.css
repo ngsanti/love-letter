@@ -11,7 +11,24 @@
   cursor: pointer;
 }
 
+.player-wrapper .player-id {
+  text-align: center;
+}
+
+.player-wrapper.disabled {
+  opacity: 0.2;
+}
+
+.player-wrapper:not(:first-child) {
+  margin-left: 16px;
+}
+
 .player-img {
   width: 45px;
   height: 45px;
+}
+
+.players-container {
+  display: flex;
+  flex-direction: row;
 }

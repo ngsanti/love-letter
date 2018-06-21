@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 
-import { Card } from '../card';
+import { Card, TYPES } from '../card';
 import { Player } from '../player';
 
 @Component({
@@ -21,17 +21,30 @@ export class HandComponent implements OnInit {
   }
 
   chooseHand() {
-    this.choose.emit({
-      chosen: this.player.hand,
-      hand: this.drawn,
-    });
+    this.doChoose(this.player.hand, this.drawn);
   }
 
   chooseDrawn() {
-    this.choose.emit({
-      chosen: this.drawn,
-      hand: this.player.hand,
-    });
+    this.doChoose(this.drawn, this.player.hand);
+  }
+
+  private doChoose(chosen: Card, other: Card) {
+    if (this.isValidChoice(chosen, other)) {
+      this.choose.emit({
+        chosen: chosen,
+        hand: other,
+      });
+    }
+  }
+
+  private isValidChoice(chosen: Card, other: Card): boolean {
+    if (chosen.type === TYPES.PRINCESS) {
+      return false;
+    }
+    if (other.type === TYPES.COUNTESS && (chosen.type === TYPES.KING || chosen.type === TYPES.PRINCE)) {
+      return false;
+    }
+    return true;
   }
 
 }

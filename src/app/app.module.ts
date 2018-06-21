@@ -8,6 +8,7 @@ import { GuideTextComponent } from './guide-text/guide-text.component';
 import { HandComponent } from './hand/hand.component';
 import { MainInfoComponent } from './main-info/main-info.component';
 import { PlayerSelectorComponent } from './player-selector/player-selector.component';
+import { WaitingRoomComponent } from './waiting-room/waiting-room.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { PlayerSelectorComponent } from './player-selector/player-selector.compo
     HandComponent,
     CardSelectorComponent,
     PlayerSelectorComponent,
+    WaitingRoomComponent,
   ],
   imports: [
     BrowserModule

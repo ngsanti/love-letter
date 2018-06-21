@@ -20,7 +20,9 @@ export class MainInfoComponent implements OnInit {
   }
 
   drawCard() {
-    this.draw.emit();
+    if (!this.disableDeck) {
+      this.draw.emit();
+    }
   }
 
 }

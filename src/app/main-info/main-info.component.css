@@ -16,7 +16,11 @@
   padding: 24px;
 }
 
-img.disabled {
+.deck-img {
+  cursor: pointer;
+}
+
+.deck-img.disabled {
   opacity: 0.5;
   cursor: not-allowed;
 }

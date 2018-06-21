@@ -69,7 +69,6 @@ export class AppComponent {
   listenForChanges(): AppComponent {
     this.pusherChannel.bind('client-done', (obj: State) => {
       this.state = obj;
-      console.log(this.state.players[this.playerId].hand);
     });
     return this;
   }
@@ -98,8 +97,6 @@ export class AppComponent {
   // component interactions?
   drawCard() {
     if (this.cardsAtHand < 2) {
-      console.log(this.state);
-      console.log(this.state.drawCard);
       this.drawnCard = this.state.deck.pop();
       this.cardsAtHand++;
     }
@@ -122,7 +119,7 @@ export class AppComponent {
           this.guardEffect();
         }
         break;
-      
+
       default:
         // code...
         break;
@@ -144,7 +141,7 @@ export class AppComponent {
           this.guardEffect();
         }
         break;
-      
+
       case TYPES.PRIEST:
         this.priestEffect();
         break;
@@ -181,7 +178,7 @@ export class AppComponent {
           this.sendState();
         }
         break;
-      
+
       case TYPES.PRIEST:
         if (this.hasAvailableTarget()) {
           this.display = "Select a player to look at their hand";

@@ -1,16 +1,16 @@
-<div class="col-100">
+<div class="col-100" *ngIf="state">
   <app-guide-text [display]="display"></app-guide-text>
   {{ playerId == state.playerIdTurn ? 'Your turn' : 'Not your turn' }}
 </div>
-<div class="row">
+<div class="row" *ngIf="state">
   <div class="col-60">
     <app-main-info
       *ngIf="state.deck"
       [cardsLeft]="state.deck.length"
       [actionCard]="chosenCard"
+      [hiddenCard]="state.hiddenCard"
       [disableDeck]="playerId != state.playerIdTurn"
       (draw)="drawCard()"></app-main-info>
-    <button (click)="sendState()">end turn</button>
     <app-hand
        *ngIf="state.players[this.playerId]"
        [player]="state.players[this.playerId]"
@@ -21,6 +21,7 @@
     <app-card-selector
       (select)="selectCard($event)"></app-card-selector>
     <app-player-selector
+      [currentPlayerId]="state.playerIdTurn"
       [players]="state.players"
       (select)="selectPlayer($event)"></app-player-selector>
   </div>

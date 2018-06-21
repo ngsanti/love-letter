@@ -1,9 +1,15 @@
-<ng-container *ngIf="players && players.length > 0" >
-  <div *ngFor="let player of players" class="player-wrapper" (click)="selectPlayer(player)">
+<h1>Players</h1>
+<div *ngIf="players && players.length > 0" class="players-container">
+  <div
+    *ngFor="let player of players"
+    class="player-wrapper"
+    [class.disabled]="player.isEliminated || player.isEffectImmune"
+    [class.current]="currentPlayerId == player.id"
+    (click)="selectPlayer(player)">
     <img src="assets/img/blank.png" class="player-img"/>
-    <span>{{ player.id }}</span>
+    <span class="player-id">{{ player.id }}</span>
   </div>
-</ng-container>
+</div>
 
 <ng-container *ngIf="!players || players.length == 0">
   <span>No players</span>

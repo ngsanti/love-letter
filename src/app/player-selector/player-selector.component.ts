@@ -10,6 +10,7 @@ import { Player } from '../player';
 export class PlayerSelectorComponent implements OnInit {
 
   @Input() players: Player[];
+  @Input() currentPlayerId: number;
   @Output() select = new EventEmitter<Player>();
   constructor() { }
 
