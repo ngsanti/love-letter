@@ -1,4 +1,6 @@
+{{player}}
 <app-guide-text></app-guide-text>
 <app-main-info></app-main-info>
+<button (click)="endTurn()">end turn</button>
 <app-hand *ngIf="player" [player]="player"></app-hand>
 <app-card-selector></app-card-selector>

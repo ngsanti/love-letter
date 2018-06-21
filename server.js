@@ -21,7 +21,7 @@
     });
 
     // to serve our JavaScript, CSS and index.html
-    app.use(express.static('./dist/'));
+    app.use(express.static('./dist/love-letter/'));
 
     // CORS
     app.all('/*', function(req, res, next) {
@@ -43,9 +43,9 @@
 
     // direct all other requests to the built app view
     app.get('*', (req, res) => {
-      res.sendFile(path.join(__dirname, './dist/index.html'));
+      res.sendFile(path.join(__dirname, './dist/love-letter/index.html'));
     });
 
     // start server
     var port = process.env.PORT || 3000;
-    app.listen(port, () => console.log('Listening at http://localhost:3000'));
+    app.listen(port, '0.0.0.0');
