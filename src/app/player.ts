@@ -1,11 +1,11 @@
-import { TYPES } from './card';
+import { Card } from './card';
 
 export class Player {
   name: string;
-  hand: TYPES;
+  hand: Card;
   isEliminated: boolean;
 
-  constructor(name: string) { 
+  constructor(name: string) {
     this.name = name;
     this.isEliminated = false;
   }

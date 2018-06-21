@@ -1,0 +1,15 @@
+:host {
+  padding: 24px;
+  display: inline-flex;
+  border: 1px solid #eee;
+  border-radius: 2px;
+}
+
+.hand {
+  display: flex;
+  flex-direction: row;
+}
+
+app-card:last-child {
+  margin-left: 16px;
+}

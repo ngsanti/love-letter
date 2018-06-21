@@ -1,0 +1,7 @@
+<div class="selection">
+  <app-card
+    *ngFor="let card of cards"
+    [card]="card"
+    class="card"
+    (click)="doSelect(card)"></app-card>
+</div>
