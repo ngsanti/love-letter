@@ -1,0 +1,10 @@
+<ng-container *ngIf="players && players.length > 0" >
+  <div *ngFor="let player of players" class="player-wrapper" (click)="selectPlayer(player)">
+    <img src="assets/img/blank.png" class="player-img"/>
+    <span>{{ player.id }}</span>
+  </div>
+</ng-container>
+
+<ng-container *ngIf="!players || players.length == 0">
+  <span>No players</span>
+</ng-container>

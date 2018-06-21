@@ -10,6 +10,6 @@
   flex-direction: row;
 }
 
-app-card:last-child {
-  margin-left: 16px;
+.card-wrapper {
+  margin: 8px;
 }

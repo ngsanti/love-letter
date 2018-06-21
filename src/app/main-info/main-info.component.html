@@ -1,12 +1,12 @@
 <div *ngIf="cardsLeft">
   <p>Cards left: {{cardsLeft}}</p>
 </div>
-<div *ngIf="gameService.deck.length > 0">
-  <img (click)="drawCard()" src="assets/img/back.png">
+<div *ngIf="cardsLeft > 0" style="display: inline-block;">
+  <img (click)="drawCard()" src="assets/img/back.png" style="cursor: pointer;">
 </div>
-<div>
-  <app-card *ngIf="actionCard" [card]="actionCard"></app-card>
+<div style="display: inline-block;" class="played-cards">
+  <app-card *ngIf="actionCard" [card]="actionCard" size="small"></app-card>
 </div>
-<div class="hidden-card">
-  <app-card [card]="gameService.hiddenCard" [hidden]="true" size="small"></app-card>
+<div class="hidden-card" *ngIf="hiddenCard">
+  <app-card [card]="hiddenCard" [hidden]="true" size="small"></app-card>
 </div>

@@ -1,7 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 import { Card } from '../card';
-import { GameService } from '../game.service';
 
 @Component({
   selector: 'app-main-info',
@@ -13,7 +12,8 @@ export class MainInfoComponent implements OnInit {
   @Output() draw = new EventEmitter<void>();
   @Input() actionCard: Card;
   @Input() cardsLeft: number;
-  constructor(public gameService: GameService) { }
+  @Input() hiddenCard: Card;
+  constructor() { }
 
   ngOnInit() {
   }

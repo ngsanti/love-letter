@@ -15,7 +15,3 @@
   display: inline-flex;
   margin: 8px;
 }
-
-.card-container.active .card {
-  border: 1px solid blue;
-}

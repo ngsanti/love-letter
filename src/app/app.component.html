@@ -1,5 +1,25 @@
-<app-guide-text [display]="display"></app-guide-text>
-<app-main-info *ngIf="state.deck" [cardsLeft]="state.deck.length"></app-main-info>
-<button (click)="endTurn()">end turn</button>
-<app-hand *ngIf="state.players[this.playerId]" [player]="state.players[this.playerId]"></app-hand>
-<app-card-selector></app-card-selector>s
+<div class="col-100">
+  <app-guide-text [display]="display"></app-guide-text>
+</div>
+<div class="row">
+  <div class="col-60">
+    <app-main-info
+      *ngIf="state.deck"
+      [cardsLeft]="state.deck.length"
+      [actionCard]="chosenCard"
+      (draw)="drawCard()"></app-main-info>
+    <button (click)="sendState()">end turn</button>
+    <app-hand
+       *ngIf="state.players[this.playerId]"
+       [player]="state.players[this.playerId]"
+      [drawn]="drawnCard"
+      (choose)="playCard($event)"></app-hand>
+  </div>
+  <div class="col-40">
+    <app-card-selector
+      (select)="selectCard($event)"></app-card-selector>
+    <app-player-selector
+      [players]="state.players"
+      (select)="selectPlayer($event)"></app-player-selector>
+  </div>
+</div>

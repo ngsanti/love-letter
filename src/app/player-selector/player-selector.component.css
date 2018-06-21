@@ -1,0 +1,17 @@
+:host {
+  padding: 24px;
+  display: block;
+  border: 1px solid #eee;
+  box-sizing: border-box;
+}
+
+.player-wrapper {
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+}
+
+.player-img {
+  width: 45px;
+  height: 45px;
+}

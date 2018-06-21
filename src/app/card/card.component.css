@@ -1,3 +1,11 @@
+:host {
+  cursor: pointer;
+}
+
+.card {
+  box-shadow: none;
+}
+
 .card-image img {
   width: 239px;
   height: 332px;
