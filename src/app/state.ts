@@ -21,14 +21,6 @@ export class State {
     }
   }
 
-  changeHand(playerId: number, newHand: Card) {
-    this.players[playerId].hand = newHand;
-  }
-
-  eliminatePlayer(playerId: number) {
-    this.players[playerId].isEliminated = true;
-  }
-
   drawCard(): Card {
     return this.deck.pop();
   }
