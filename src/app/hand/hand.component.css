@@ -1,8 +1,8 @@
 :host {
   padding: 24px;
-  display: inline-flex;
+  display: flex;
   border: 1px solid #eee;
-  border-radius: 2px;
+  box-sizing: border-box;
 }
 
 .hand {

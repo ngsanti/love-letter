@@ -1,6 +1,7 @@
-import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 
 import { Card } from '../card';
+import { GameService } from '../game.service';
 import { Player } from '../player';
 
 @Component({
@@ -10,11 +11,21 @@ import { Player } from '../player';
 })
 export class HandComponent implements OnInit, OnChanges {
 
-  @Input() player: Player;
   @Input() drawn: Card;
+  @Input() player: Player;
+  @Output() choose = new EventEmitter<Card>();
   hand: Card;
+  cards: Card[] = [];
 
-  constructor() { }
+  constructor(
+    private gameService: GameService,
+  ) {
+    // this.gameService.getPlayer().subscribe((player: Player) => {
+    //   this.player = player;
+    //   this.hand = player.hand;
+    //   this.cards.push(player.hand);
+    // });
+  }
 
   ngOnInit() {
   }
@@ -25,10 +36,9 @@ export class HandComponent implements OnInit, OnChanges {
     }
   }
 
-  switchHand() {
-    const hold = this.drawn;
-    this.drawn = this.hand;
-    this.hand = hold;
+  chooseCard(index: number) {
+    const chosen = this.cards.splice(index, 1);
+    this.choose.emit(chosen[0]);
   }
 
 }

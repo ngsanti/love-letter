@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+
+import { Card } from '../card';
 import { GameService } from '../game.service';
 
 @Component({
@@ -7,9 +9,16 @@ import { GameService } from '../game.service';
   styleUrls: ['./main-info.component.css']
 })
 export class MainInfoComponent implements OnInit {
-  constructor(private gameService: GameService) { }
+
+  @Output() draw = new EventEmitter<void>();
+  @Input() actionCard: Card;
+  constructor(public gameService: GameService) { }
 
   ngOnInit() {
+  }
+
+  drawCard() {
+    this.draw.emit();
   }
 
 }

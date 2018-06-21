@@ -1,7 +1,10 @@
 <div class="selection">
-  <app-card
-    *ngFor="let card of cards"
-    [card]="card"
-    class="card"
-    (click)="doSelect(card)"></app-card>
+  <div class="card-container" *ngFor="let card of cards">
+    <span>x {{ card.total }}</span>
+    <app-card
+      [card]="card"
+      class="card"
+      size="small"
+      (click)="doSelect(card)"></app-card>
+  </div>
 </div>

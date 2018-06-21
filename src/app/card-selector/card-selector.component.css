@@ -1,20 +1,21 @@
 :host {
-  padding: 24px;
-  display: inline-flex;
+  padding: 16px;
+  display: flex;
   border: 1px solid #eee;
-  border-radius: 2px;
-  max-width: 540px;
+  box-sizing: border-box;
 }
 
 .selection {
   text-align: center;
 }
 
-.card {
+.card-container {
+  display: flex;
+  flex-direction: column;
   display: inline-flex;
   margin: 8px;
 }
 
-.card.active {
+.card-container.active .card {
   border: 1px solid blue;
 }

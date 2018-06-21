@@ -1,9 +1,10 @@
 <div class="card" *ngIf="card">
-  <div class="card-image" *ngIf="card.image">
-    <img src="{{ card.image }}"/>
+  <div class="card-image {{ size }}" *ngIf="card.image">
+    <img *ngIf="!hidden" src="{{ card.image }}"/>
+    <img *ngIf="hidden" src="assets/img/back.png"/>
   </div>
 </div>
 
-<div class="blank-card" *ngIf="!card">
+<div class="blank-card {{ size }}" *ngIf="!card">
   <div>Blank</div>
 </div>

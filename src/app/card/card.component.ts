@@ -10,6 +10,8 @@ import { Card } from '../card';
 export class CardComponent implements OnInit {
 
   @Input() card: Card;
+  @Input() hidden = false;
+  @Input() size: 'small' | 'normal' | 'large' = 'normal';
   @Output() choose = new EventEmitter();
 
   constructor() { }

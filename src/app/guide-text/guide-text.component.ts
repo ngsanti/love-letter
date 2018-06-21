@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+
 import { GameService } from '../game.service';
 
 @Component({
@@ -7,8 +8,9 @@ import { GameService } from '../game.service';
   styleUrls: ['./guide-text.component.css']
 })
 export class GuideTextComponent implements OnInit {
-  constructor(private gameService: GameService) { }
+  constructor() { }
 
+  @Input() display = '';
   ngOnInit() {
   }
 }
