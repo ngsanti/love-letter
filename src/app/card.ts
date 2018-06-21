@@ -6,7 +6,8 @@ export enum TYPES {
   PRINCE,
   KING,
   COUNTESS,
-  PRINCESS
+  PRINCESS,
+  NONE,
 }
 
 export class Card {
@@ -59,7 +60,9 @@ export class Card {
         this.description = 'If you discard this card, you are out of the round.';
         break;
       default:
-        // code...
+        this.rank = 0;
+        this.image = 'assets/img/back.png';
+        this.description = '';
         break;
     }
   }
